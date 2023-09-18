@@ -15,6 +15,8 @@ git clone https://github.com/benjhan/ece-webtech-2023-fall-gr03-05/
 2. Install prerequisites application : Node.js
 ```bash 
 npm install
+npm install express
+npm install uuid
 ```
 3. Go to your Terminal and run : 
 ```bash
