@@ -11,6 +11,6 @@ If http://localhost:8080/about it will show the contents of the about file.
 3. Go to your Terminal and run : npm run dev
 4. Open a web browser and visit the different website indicated earlier
 
-#Author
+# Author
 
 Benjamin HAN
