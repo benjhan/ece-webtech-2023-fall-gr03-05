@@ -37,7 +37,7 @@ module.exports = {
     }
     else {
         res.writeHead(404, {'Content-Type': 'text/plain'})
-        res.write('Page not found')
+        res.write('page not found')
     }
     
     res.end()
