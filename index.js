@@ -1,8 +1,18 @@
 // Import a module
-const http = require('http')
-const handles =require('./handles')
+const express = require('express')
+const app = express();
 
-http
-.createServer(handles.serverHandle)
-.listen(8080, '127.0.0.1', () => {console.log('Serveur HHTP sur port 8080 ok');})
-  
+const home = require('./routes')
+const hello = require('./routes/hello')
+const about = require('./routes/about')
+
+app.use('/', home);
+app.use('/hello', hello);
+app.use('/about', about);
+
+app.set('port', 8080);
+
+app.listen(
+    app.get('port'), 
+    () => console.log('Server listening on' )
+)
