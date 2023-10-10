@@ -1,16 +1,29 @@
 # ece-webtech-2023-fall-grp-3-05
-# Introduction
-Node.js is used in order to create a localhost which respond with Hello and a name depending of the url
-http://localhost:8080/hello?name=YourName
-If you change YourName with any name the website will respond by greating you with the name you write and if you don't write any name it will geat an annymous.
-If http://localhost:8080/about it will show the contents of the about file.
+## Introduction
+Node.js is used in order to create a localhost which respond with Hello and a name depending of the url and Next.js is going to be used to create a page.
+http://localhost:3000/
+http://localhost:3000/about
+http://localhost:3000/contacts
+http://localhost:3000/articles
 
-# Usage
+
+### Usage
 1. Clone the repository to your machine
+``` bash
+git clone https://github.com/benjhan/ece-webtech-2023-fall-gr03-05/
+```
 2. Install prerequisites application : Node.js
-3. Go to your Terminal and run : npm run dev
+```bash 
+npm install
+```
+3. Go to your Terminal and run : 
+```bash
+npm run dev
+```
 4. Open a web browser and visit the different website indicated earlier
 
-# Author
 
-Benjamin HAN
+#### Authors
+Théophile Broqua
+Benjamin Han    
+Adrian Athanasopoulos
