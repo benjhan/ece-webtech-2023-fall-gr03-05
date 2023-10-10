@@ -22,7 +22,6 @@ npm run dev
 ```
 4. Open a web browser and visit the different website indicated earlier
 
-
 #### Authors
 Théophile Broqua
 Benjamin Han    
