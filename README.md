@@ -25,5 +25,5 @@ npm run dev
 
 #### Authors
 Théophile Broqua
-Benjamin Han    
+Benjamin Han
 Adrian Athanasopoulos
