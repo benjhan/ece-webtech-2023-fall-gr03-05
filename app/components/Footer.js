@@ -1,3 +1,5 @@
+import Counter from "@/pages/use-state";
+
 export default function footer(){
   return (
     <footer className="mt-auto bg-gray-800 text-white p-4 text-center">

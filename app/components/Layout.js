@@ -1,5 +1,6 @@
 import Header from '../components/Header.js'
 import Footer from '../components/Footer.js'
+import Counter from '@/pages/use-state.js'
 
 export default function Layout({children}){
   return (
@@ -7,6 +8,9 @@ export default function Layout({children}){
       <Header />
       <main>
         {children}
+        <Counter>
+          
+        </Counter>
       </main>
       <Footer />
     </div>
