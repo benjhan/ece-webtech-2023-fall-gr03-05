@@ -11,23 +11,23 @@ export default function Page() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <h1>
-        Welcome to <a href="https://www.adaltas.com">web technologies!</a>
+        Welcome to our Website<a href="https://www.adaltas.com"> Panda Express !</a>
       </h1>
 
       <ul>
         <li>
           <Link href="/articles">
-            View our articles
+            Click here to view our articles
           </Link>
         </li>
         <li>
           <Link href="/about">
-            About us
+            Click here to see about us
           </Link>
         </li>
         <li>
           <Link href="/contacts">
-            Contact us
+            Click here to contact us
           </Link>
         </li>
       </ul>

@@ -1,6 +1,6 @@
-export default function Header(){
+export default function footer(){
   return (
-    <footer>
+    <footer className="mt-auto bg-gray-800 text-white p-4 text-center">
       <a
         href="https://github.com/benjhan/ece-webtech-2023-fall-gr03-05"
         target="_blank"
