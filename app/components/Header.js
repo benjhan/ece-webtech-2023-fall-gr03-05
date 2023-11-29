@@ -1,24 +1,15 @@
-import Link from 'next/link'
-import Image from 'next/image'
+import Link from 'next/link';
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
+import { useUser } from './UserContext'; 
 
 export default function Header() {
-  const [user, setUser] = useState(null);
-  const router = useRouter();
+  const { userProfile, isConnected, handleDisconnect } = useUser();
+  const [isLoggedIn, setIsLoggedIn] = useState(isConnected);
 
   useEffect(() => {
-    const userData = localStorage.getItem('user');
-    if (userData) {
-      setUser(JSON.parse(userData));
-    }
-  }, []);
-
-  const handleLogout = () => {
-    localStorage.removeItem('user');
-    setUser(null);
-    router.push('/');
-  };
+    setIsLoggedIn(isConnected);
+  }, [isConnected]);
 
   return (
     <header className="bg-blue-500 py-4 px-6 flex items-center justify-between">
@@ -46,19 +37,35 @@ export default function Header() {
             <span className="text-white hover:text-blue-200 cursor-pointer">Contact us</span>
           </Link>
         </li>
-        {user ? (
-          <li className="text-white hover:text-blue-200 cursor-pointer">
-            <span className="flex items-center" onClick={handleLogout}>
-              <Image src="/account-icon.svg" alt="Compte" width={25} height={25} />
-              <span className="ml-2">{user.username}</span>
-            </span>
-          </li>
+        {!isLoggedIn ? (
+          <>
+            <li>
+              <Link href="/login-native" passHref>
+                <button className="text-white hover:text-blue-200">Login-Native</button>
+              </Link>
+            </li>
+            <li>
+              <Link href="/login-controlled" passHref>
+                <button className="text-white hover:text-blue-200">Login-Controlled</button>
+              </Link>
+            </li>
+            <li>
+              <Link href="/login" passHref>
+                <button className="text-white hover:text-blue-200">Login</button>
+              </Link>
+            </li>
+          </>
         ) : (
-          <li>
-            <Link href="/login" passHref>
-              <span className="text-white hover:text-blue-200 cursor-pointer">Login</span>
-            </Link>
-          </li>
+          <>
+            <li className="text-white hover:text-blue-200 cursor-pointer">
+              <span>Welcome, {userProfile ? userProfile.username : ''}</span>
+            </li>
+            <li>
+              <button onClick={handleDisconnect} className="text-white hover:text-blue-200">
+                Disconnect
+              </button>
+            </li>
+          </>
         )}
       </ul>
     </header>
