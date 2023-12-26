@@ -1,4 +1,3 @@
-import Head from 'next/head';
 import Link from 'next/link';
 import Layout from '../components/Layout.js';
 
@@ -12,8 +11,6 @@ export async function getStaticProps() {
     revalidate: 60,
   };
 }
-
-
 export default function Page({ articles }) {
   return (
     <Layout>
