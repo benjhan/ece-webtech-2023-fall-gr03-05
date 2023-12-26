@@ -2,9 +2,11 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useContext } from 'react';
 import UserContext from './UserContext';
+import { useDarkMode } from './DarkModeContext'; // Import the useDarkMode hook
 
 export default function Header() {
   const { user } = useContext(UserContext);
+  const { darkMode, setDarkMode } = useDarkMode(); // Use the darkMode state and setDarkMode function
 
   return (
     <header className="bg-custom-teal py-4 px-6 flex items-center justify-between">
@@ -12,11 +14,24 @@ export default function Header() {
         <Link href={`/`} passHref>
           <span className="flex items-center space-x-2 text-white cursor-pointer">
             <Image src="/plane.png" alt="Icon Logo" width={25} height={25} />
-            <span className=" text-white hover:text-blue-200 text-xl font-bold">WebSpotBlog</span>
+            <span className="text-white hover:text-blue-200 text-xl font-bold">WebSpotBlog</span>
           </span>
         </Link>
       </div>
-      <ul className="flex space-x-6">
+      <ul className="flex space-x-6 items-center">
+      <li>
+          <div className="flex items-center">
+            <span className="text-white text-xl font-bold mr-2">Dark Mode</span>
+            <label className="switch">
+              <input 
+                type="checkbox" 
+                checked={darkMode}
+                onChange={() => setDarkMode(!darkMode)}
+              />
+              <span className="slider round"></span>
+            </label>
+          </div>
+        </li>
         <li>
           <Link href="/articles" passHref>
             <span className="text-white hover:text-blue-200 cursor-pointer text-xl font-bold">Articles</span>
@@ -45,5 +60,5 @@ export default function Header() {
         </li>
       </ul>
     </header>
-  );
+  );  
 }
