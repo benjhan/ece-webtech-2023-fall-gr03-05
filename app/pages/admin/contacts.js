@@ -4,9 +4,11 @@ import { ChevronRightIcon } from '@heroicons/react/20/solid'
 import Layout from '../../components/Layout.js'
 import { useSupabaseClient } from '@supabase/auth-helpers-react'
 
+// Page contacts
 export default function Contacts() {
   const [contacts, setContacts] = useState([])
   const supabase = useSupabaseClient()
+  // Fetch contacts data.
   useEffect(() => {
     (async () => {
       let { data, error, status } = await supabase
@@ -15,6 +17,7 @@ export default function Contacts() {
         setContacts(data)
     })()
   }, [supabase])
+
   return (
     <Layout
       title="Admin Contacts"

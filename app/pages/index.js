@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import Link from 'next/link'
 import Layout from '../components/Layout.js'
 
@@ -8,7 +7,6 @@ export default function Page() {
       <h1>
         Welcome to WebSpotBlog !
       </h1>
-
       <ul>
         <li>
           <Link href="/articles">
