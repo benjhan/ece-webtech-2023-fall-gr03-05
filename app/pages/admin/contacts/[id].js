@@ -3,11 +3,10 @@ import { useSupabaseClient } from '@supabase/auth-helpers-react'
 import md from 'markdown-it'
 import Layout from '../../../components/Layout.js'
 
-export default function Contacts({
-  id
-}) {
+export default function Contacts({id}) {
   const [contact, setContact] = useState(null)
   const supabase = useSupabaseClient()
+  // Fetch the contact message from the database
   useEffect(() => {
     (async () => {
       let { data, error, status } = await supabase
@@ -18,6 +17,7 @@ export default function Contacts({
       setContact(data)
     })()
   }, [id, supabase])
+
   return (
     <Layout
       title="Admin Contacts"
@@ -45,6 +45,7 @@ export default function Contacts({
   )
 }
 
+// This function gets called at build time
 export async function getServerSideProps(context) {
   return {
     props: {

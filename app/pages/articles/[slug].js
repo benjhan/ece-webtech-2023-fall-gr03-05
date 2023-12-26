@@ -1,12 +1,6 @@
-import { useEffect, useState } from 'react'
-import Head from 'next/head'
-import Image from 'next/image'
-import Link from 'next/link'
 import Layout from '../../components/Layout.js'
 
-export default function Page({
-  article
-}) {
+export default function Page({article}) {
   return (
     <Layout>
       <h1>
@@ -19,7 +13,6 @@ export default function Page({
     </Layout>
   )
 }
-
 export async function getStaticProps(ctx) {
   const response = await fetch(`http://localhost:3000/api/articles/${ctx.params.slug}`)
   const article = await response.json()
@@ -29,7 +22,6 @@ export async function getStaticProps(ctx) {
     }
   };
 }
-
 export async function getStaticPaths(ctx) {
   const response = await fetch(`http://localhost:3000/api/articles`)
   const articles = await response.json()

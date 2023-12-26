@@ -1,4 +1,3 @@
-
 import { db } from '../articles.js'
 
 export default function handler(req, res) {
