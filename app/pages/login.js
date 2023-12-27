@@ -1,12 +1,12 @@
 import { useRouter } from 'next/router';
-import { useSupabaseClient, useUser } from '@supabase/auth-helpers-react';
+import { useUser } from '@supabase/auth-helpers-react';
 import { Auth } from '@supabase/auth-ui-react';
 import { ThemeSupa } from '@supabase/auth-ui-shared';
 import Layout from '../components/Layout.js';
+import {supabase} from '../components/SupabaseClient.js'
 
 export default function Login() {
   const router = useRouter();
-  const supabase = useSupabaseClient();
   const user = useUser();
   if (user) {
     router.push('/profile');

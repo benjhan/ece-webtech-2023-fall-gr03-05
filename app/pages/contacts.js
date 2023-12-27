@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { createClient } from '@supabase/supabase-js'
 import { useRouter } from 'next/router'; // Import useRouter
 import Layout from '../components/Layout.js'
+import {supabase} from '../components/SupabaseClient.js'
 
 // Initialize Supabase client using environment variables
-const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
+
 export default function Page() {
   // Initialize useRouter
   const router = useRouter(); 
