@@ -1,9 +1,6 @@
 import { createContext, useState, useEffect } from 'react';
-import { createClient } from '@supabase/supabase-js';
+import { supabase } from '../components/SupabaseClient';
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-const supabase = createClient(supabaseUrl, supabaseAnonKey);
 const UserContext = createContext();
 // This context provider is passed to any component requiring the context
 export const UserProvider = ({ children }) => {
