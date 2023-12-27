@@ -2,13 +2,12 @@ import { useRouter } from 'next/router';
 import { useContext, useState, useEffect } from 'react';
 import UserContext from '../components/UserContext';
 import Layout from '../components/Layout.js';
-import { useSupabaseClient } from '@supabase/auth-helpers-react';
+import { supabase } from '@/components/SupabaseClient';
 
 // Profile page
 export default function Profile() {
   const router = useRouter();
   const { user, logout } = useContext(UserContext);
-  const supabase = useSupabaseClient();
   const [isEditing, setIsEditing] = useState(false);
   const [profileData, setProfileData] = useState({
     username: '',

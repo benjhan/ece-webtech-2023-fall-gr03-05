@@ -1,30 +1,40 @@
 import Link from 'next/link';
 import Layout from '../components/Layout.js';
+import { useState, useEffect } from 'react';
+import { supabase } from '@/components/SupabaseClient.js';
+import Post from '@/components/Post.js';
 
-export async function getStaticProps() {
-  const response = await fetch("http://localhost:3000/api/articles");
-  const articles = await response.json();
-  return {
-    props: {
-      articles,
-    },
-    revalidate: 60,
-  };
-}
-export default function Page({ articles }) {
+export default function Posts() {
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        let { data, error } = await supabase
+          .from('posts')
+          .select();
+
+        if (error) {
+          console.error('Error fetching data:', error);
+          return;
+        }
+
+        setPosts(data);
+        console.log(data);
+      } catch (error) {
+        console.error('An unexpected error occurred:', error.message);
+      }
+    })();
+  }, []);
+
   return (
     <Layout>
-      <h1>Web technologies articles</h1>
-      <p className="italic hover:not-italic">
-        This page is statically generated, great for SEO.
-      </p>
+      <h1 className="max-w-md mx-auto bg-white shadow-md p-6 rounded-md mb-4 text-2xl font-bold mb-2 text-center">
+        Posts Page</h1>
       <ul>
-        {articles.map((article) => (
-          <li key={article.slug}>
-            <h2>
-              <Link href={`/articles/${article.slug}`}>{article.title}</Link>
-            </h2>
-            <p>{article.message}</p>
+        {posts.map((post) => (
+          <li key={post.id}>
+            <Post post={post} />
           </li>
         ))}
       </ul>
