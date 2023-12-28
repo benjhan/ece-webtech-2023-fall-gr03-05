@@ -56,21 +56,6 @@ export default function Page() {
         }
     };
 
-    // const handleSave = async (e) => {
-    //     e.preventDefault();
-    //             const { data, error } = await supabase
-    //         .from('posts')
-    //         .insert([
-    //             { ...formData }
-    //         ]);
-    //     if (error) {
-    //         console.error("Error inserting data", error);
-    //         // Here you can handle the error, such as displaying a notification to the user
-    //     } else {
-    //         // Navigate to the 'contact-us' page or whatever page you want after successful form submission
-    //         router.push('/articles'); // Adjust this to your desired route
-    //     }
-    // }
     return (
         <Layout>
             <main style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '80vh' }}>
