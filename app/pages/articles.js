@@ -4,6 +4,7 @@ import { supabase } from '@/components/SupabaseClient.js';
 import Post from '@/components/Post.js';
 import { useDarkMode } from '../components/DarkModeContext'; // Import the DarkMode context
 
+
 export default function Posts() {
   const [posts, setPosts] = useState([]);
   const { darkMode } = useDarkMode(); // Use the dark mode state from context
@@ -18,9 +19,8 @@ export default function Posts() {
           console.error('Error fetching data:', error);
           return;
         }
-
-        setPosts(data);
-        console.log(data);
+        const sortedData = data.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+        setPosts(sortedData);
       } catch (error) {
         console.error('An unexpected error occurred:', error.message);
       }

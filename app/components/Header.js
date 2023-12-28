@@ -48,6 +48,11 @@ export default function Header() {
           </Link>
         </li>
         <li>
+          <Link href="/createpost" passHref>
+            <span className="text-white hover:text-blue-200 cursor-pointer text-xl font-bold">Create post</span>
+          </Link>
+        </li>
+        <li>
           {user ? (
             <Link href="/profile" passHref>
               <span className="text-white hover:text-blue-200 cursor-pointer text-xl font-bold">Profile</span>
