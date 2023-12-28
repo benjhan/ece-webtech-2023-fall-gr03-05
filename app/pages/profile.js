@@ -3,12 +3,14 @@ import { useContext, useState, useEffect } from 'react';
 import UserContext from '../components/UserContext';
 import Layout from '../components/Layout.js';
 import { supabase } from '@/components/SupabaseClient';
+import { useDarkMode } from '../components/DarkModeContext';
 
 // Profile page
 export default function Profile() {
   const router = useRouter();
   const { user, logout } = useContext(UserContext);
   const [isEditing, setIsEditing] = useState(false);
+  const { darkMode } = useDarkMode();
   const [profileData, setProfileData] = useState({
     username: '',
     first_name: '',
@@ -33,6 +35,12 @@ export default function Profile() {
       fetchProfile();
     }
   }, [user, supabase]);
+  // Style for form inputs
+  const inputStyle = {
+    backgroundColor: darkMode ? '#555' : 'white', // Darker input background for dark mode
+    color: darkMode ? 'white' : 'black', // Text color for input
+    border: darkMode ? '1px solid #777' : '1px solid #ccc', // Input border color
+  };
   // Handle input changes
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -72,10 +80,10 @@ export default function Profile() {
           </div>
           {isEditing ? (
             <>
-              <input style={{ width: '100%', padding: '10px' }} value={profileData.username} onChange={handleInputChange} name="username" required/>
-              <input style={{ width: '100%', padding: '10px' }} value={profileData.first_name} onChange={handleInputChange} name="first_name" required/>
-              <input style={{ width: '100%', padding: '10px' }} value={profileData.last_name} onChange={handleInputChange} name="last_name" required/>
-              <textarea style={{ width: '100%', padding: '10px', height: '100px' }} value={profileData.description} onChange={handleInputChange} name="description" required/>
+              <input style={{ ...inputStyle, width: '100%', padding: '10px' }} value={profileData.username} onChange={handleInputChange} name="username" required/>
+              <input style={{ ...inputStyle, width: '100%', padding: '10px' }} value={profileData.first_name} onChange={handleInputChange} name="first_name" required/>
+              <input style={{ ...inputStyle, width: '100%', padding: '10px' }} value={profileData.last_name} onChange={handleInputChange} name="last_name" required/>
+              <textarea style={{ ...inputStyle, width: '100%', padding: '10px', height: '100px' }} value={profileData.description} onChange={handleInputChange} name="description" required/>
               <button style={{ width: '100%', padding: '10px', marginBottom: '10px' }} onClick={saveProfile} className="bg-gray-500 text-white rounded-md">Save </button>
             </>
           ) : (
