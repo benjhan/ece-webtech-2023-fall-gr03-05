@@ -17,6 +17,7 @@ export default function Page() {
     email: '',
     message: ''
   });
+  
   // Style for form inputs
   const inputStyle = {
     backgroundColor: darkMode ? '#555' : 'white',
