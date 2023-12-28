@@ -1,8 +1,8 @@
-import Layout from '../components/Layout.js';
+import Layout from '../../components/Layout.js';
 import { useState, useEffect } from 'react';
 import { supabase } from '@/components/SupabaseClient.js';
 import Post from '@/components/Post.js';
-import { useDarkMode } from '../components/DarkModeContext'; // Import the DarkMode context
+import { useDarkMode } from '../../components/DarkModeContext.js'; // Import the DarkMode context
 
 
 export default function Posts() {
