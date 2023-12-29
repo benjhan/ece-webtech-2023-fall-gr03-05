@@ -12,6 +12,7 @@ export default function Page() {
     const router = useRouter();
     // Use the dark mode state from context
     const { darkMode } = useDarkMode();
+    const [hoveredButton, setHoveredButton] = useState('');
     const [formData, setFormData] = useState({
         title: '',
         content: '',
@@ -31,6 +32,17 @@ export default function Page() {
         padding: '10px',
         borderRadius: '4px',
     };
+    const buttonStyle = (buttonName) => ({
+        backgroundColor: '#0070f3',
+        color: 'white',
+        padding: '10px 20px',
+        borderRadius: '5px',
+        marginBottom: '20px',
+        border: 'none',
+        cursor: 'pointer',
+        transition: 'transform 0.3s ease', // Animation transition
+        transform: hoveredButton === buttonName ? 'scale(1.1)' : 'scale(1)', // Scale the button
+      });
     // Function to update state based on form input
     const updateFormData = (e) => {
         setFormData({
@@ -79,7 +91,7 @@ export default function Page() {
                                 <label htmlFor="content" className="block text">Contents</label>
                                 <textarea type="message" id="content" name="content" onChange={updateFormData} required style={inputStyle} />
                             </p>
-                            <button style={darkMode ? { backgroundColor: '#333', color: 'white' } : { backgroundColor: '#ccc', color: 'black' }} className="mt-4 px-4 py-2 rounded-md">Post now</button>
+                            <button style={buttonStyle('post')} onMouseEnter={() => setHoveredButton('post')} onMouseLeave={() => setHoveredButton('')}>Post now</button>
                         </form>
                     </div>
                 ) : (
