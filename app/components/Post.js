@@ -12,8 +12,8 @@ const Post = ({ post }) => {
   // Navigate to post page
   const navigateToPost = () => {router.push(`/articles/${id}`);};
   return (
-    <div className="max-w-md mx-auto shadow-md p-6 rounded-md mb-4" style={postBlockStyle} onClick={navigateToPost}>
-      <h2 className="text-2xl font-bold mb-2">
+    <div className="max-w-md mx-auto shadow-md p-6 rounded-md mb-4" style={postBlockStyle} >
+      <h2 className="text-2xl font-bold mb-2"onClick={navigateToPost}>
         {title}
       </h2>
       <p className="mb-4">
