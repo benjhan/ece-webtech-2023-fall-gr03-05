@@ -54,7 +54,7 @@ export default function Page() {
     <Layout>
         <main style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '80vh' }}>
             <div style={{ backgroundColor: '#9e9e9e', padding: '20px', borderRadius: '8px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', width: 'auto', maxWidth: '500px' }}>
-                <h1>Contact Us</h1>
+              <h1 style={{ fontWeight: 'bold', fontSize: '2rem' }}>Contact Us</h1>
                 <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                 <p>
                   <label htmlFor="firstname" className="block text">First name:</label>

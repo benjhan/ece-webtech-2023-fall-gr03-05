@@ -61,15 +61,11 @@ export default function Page() {
             <main style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '80vh' }}>
                 {user ? (
                     <div style={{ backgroundColor: '#9e9e9e', padding: '20px', borderRadius: '8px', boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', width: 'auto', maxWidth: '500px' }}>
-                        <h1 className="rounded-md mb-4 text-2xl font-bold mb-2 text-center" style={{ backgroundColor: darkMode ? '#333' : 'white', color: darkMode ? 'white' : 'black' }}>Create a post!</h1>
+                        <h1 style={{ fontWeight: 'bold', fontSize: '2rem' }}>Create post</h1>
                         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                             <p>
                                 <label htmlFor="title" className="block text">Title</label>
                                 <input type="text" id="title" name="title" onChange={updateFormData} required style={inputStyle} />
-                            </p>
-                            <p>
-                                <label htmlFor="content" className="block text">Contents</label>
-                                <textarea type="message" id="content" name="content" onChange={updateFormData} required style={inputStyle} />
                             </p>
                             <p>
                                 <label htmlFor="tags" className="block text">Tags</label>
@@ -77,9 +73,12 @@ export default function Page() {
                             </p>
                             <p>
                                 <label htmlFor="categories" className="block text">Categories</label>
-                                <input id="categories" name="categories" onChange={updateFormData}></input>
+                                <input id="categories" name="categories" onChange={updateFormData}required style={inputStyle} ></input>
                             </p>
-                            <button type="submit" style={darkMode ? { backgroundColor: '#333', color: 'white' } : { backgroundColor: '#ccc', color: 'black' }} className="mt-4 px-4 py-2 rounded-md">Save for later... (not implemented)</button>
+                            <p>
+                                <label htmlFor="content" className="block text">Contents</label>
+                                <textarea type="message" id="content" name="content" onChange={updateFormData} required style={inputStyle} />
+                            </p>
                             <button style={darkMode ? { backgroundColor: '#333', color: 'white' } : { backgroundColor: '#ccc', color: 'black' }} className="mt-4 px-4 py-2 rounded-md">Post now</button>
                         </form>
                     </div>
