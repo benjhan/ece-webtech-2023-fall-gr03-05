@@ -7,7 +7,6 @@ import Comments from '@/components/Comments.js';
 import CommentForm from '@/components/CommentForm.js';
 import { useUser } from '@supabase/auth-helpers-react';
 
-
 export default function Page() {
   // Check if user is logged in
   const user = useUser();

@@ -1,51 +1,25 @@
 import { useState } from 'react';
-import { useRouter } from 'next/router'; // Import useRouter
+import { useRouter } from 'next/router';
 import Layout from '../components/Layout.js'
 import {supabase} from '../components/SupabaseClient.js'
-import { useDarkMode } from '../components/DarkModeContext'; // Import the DarkMode context
+import { useDarkMode } from '../components/DarkModeContext';
 
 // Initialize Supabase client using environment variables
-
 export default function Page() {
   // Initialize useRouter
   const router = useRouter(); 
   // Use the dark mode state from context
   const { darkMode } = useDarkMode(); 
+  // State for hovered button
   const [hoveredButton, setHoveredButton] = useState('');
-  const [formData, setFormData] = useState({
-    firstname: '',
-    lastname: '',
-    email: '',
-    message: ''
-  });
-  
+  // State for form data
+  const [formData, setFormData] = useState({firstname: '',lastname: '',email: '',message: ''});
   // Style for form inputs
-  const inputStyle = {
-    backgroundColor: darkMode ? '#555' : 'white',
-    color: darkMode ? 'white' : 'black',
-    border: darkMode ? '1px solid #777' : '1px solid #ccc',
-    padding: '10px',
-    borderRadius: '4px',
-  };
+  const inputStyle = {backgroundColor: darkMode ? '#555' : 'white',color: darkMode ? 'white' : 'black',border: darkMode ? '1px solid #777' : '1px solid #ccc',padding: '10px',borderRadius: '4px',};
   // Style for form buttons
-  const buttonStyle = (buttonName) => ({
-    backgroundColor: '#0070f3',
-    color: 'white',
-    padding: '10px 20px',
-    borderRadius: '5px',
-    marginBottom: '20px',
-    border: 'none',
-    cursor: 'pointer',
-    transition: 'transform 0.3s ease', // Animation transition
-    transform: hoveredButton === buttonName ? 'scale(1.1)' : 'scale(1)', // Scale the button
-  });
+  const buttonStyle = (buttonName) => ({backgroundColor: '#0070f3',color: 'white',padding: '10px 20px',borderRadius: '5px',marginBottom: '20px',border: 'none',cursor: 'pointer',transition: 'transform 0.3s ease',transform: hoveredButton === buttonName ? 'scale(1.1)' : 'scale(1)',});
   // Function to update state based on form input
-  const updateFormData = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
+  const updateFormData = (e) => {setFormData({...formData,[e.target.name]: e.target.value});};
   // Function to handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault(); // Prevent default form submission behavior
