@@ -28,7 +28,7 @@ return (
           <textarea id="commentText" value={commentText} onChange={(e) => setCommentText(e.target.value)} required style={{ ...inputStyle, height: '100px' }} />
         </div>
         <div>
-          <button type ="submit" style={buttonStyle('post')} onMouseEnter={() => setHoveredButton('post')} onMouseLeave={() => setHoveredButton('')}>Edit</button>
+          <button type ="submit" style={buttonStyle('post')} onMouseEnter={() => setHoveredButton('post')} onMouseLeave={() => setHoveredButton('')}>Post Comment</button>
         </div>
       </form>
     </div>
