@@ -67,7 +67,7 @@ export default function Profile() {
       };
       fetchOrCreateProfile();
     }
-  }, [user, supabase]);
+  }, [user]);
   // Style for form inputs
   const inputStyle = {backgroundColor: darkMode ? '#555' : 'white',color: darkMode ? 'white' : 'black', border: darkMode ? '1px solid #777' : '1px solid #ccc',};
   // Handle input changes
