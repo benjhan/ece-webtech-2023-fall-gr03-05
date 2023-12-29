@@ -42,7 +42,7 @@ export default function Posts() {
           <button style={buttonStyle('post')}onMouseEnter={() => setHoveredButton('post')}onMouseLeave={() => setHoveredButton('')}>Post</button>
         </Link>
       </div>
-      <ul>
+      <ul classname="relative">
         {posts.map((post) => (
           <li key={post.id}>
             <Post post={post} />
