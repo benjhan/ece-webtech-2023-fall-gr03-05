@@ -4,8 +4,7 @@ import Head from 'next/head';
 import { useDarkMode } from './DarkModeContext'; // Import the DarkMode context
 
 export default function Layout({ children }) {
-  const { darkMode } = useDarkMode(); // Use the dark mode state
-
+  const { darkMode } = useDarkMode(); // Use the dark mode state from context
   return (
     <div className={`flex flex-col min-h-screen ${darkMode ? 'bg-black text-white' : 'bg-light-gray text-black'}`}>
       <Head>

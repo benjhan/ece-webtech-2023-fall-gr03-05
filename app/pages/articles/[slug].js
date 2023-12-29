@@ -7,26 +7,23 @@ import Comments from '@/components/Comments.js';
 import CommentForm from '@/components/CommentForm.js';
 import { useUser } from '@supabase/auth-helpers-react';
 
-
 export default function Page() {
   // Check if user is logged in
   const user = useUser();
   const router = useRouter();
+  // Router query
   const { slug: id } = router.query
   const [posts, setPosts] = useState([]);
   const [comments, setComments] = useState([])
   console.log(id)
-
   useEffect(() => {
     if (!id) return; // Needs to wait because it fetches at build time
-
     (async () => {
       try {
         let { data, error } = await supabase
           .from('posts')
           .select()
           .filter('id', 'eq', id) // Filter by the id
-
         if (error) {
           console.error('Error fetching data:', error);
           return;
@@ -37,7 +34,6 @@ export default function Page() {
           .from('comments')
           .select()
           .filter('id', 'eq', id)
-
         if (commentsError) {
           console.error('Error fetching comments:', commentsError);
           return;
@@ -48,21 +44,15 @@ export default function Page() {
       }
     })();
   }, [id]);
-
   const handleNewComment = async (comment) => {
-
     let { data, error } = await supabase
       .from('comments')
-      .insert([
-        { id: id, content: comment.commentText, email: comment.email },
-      ]);
-
+      .insert([{ id: id, content: comment.commentText, email: comment.email },]);
     if (error) {
       console.error('Error inserting comment:', error);
       return;
     }
   };
-
   return (
     <Layout>
       <ul>
@@ -80,7 +70,6 @@ export default function Page() {
         <div className="max-w-md mx-auto shadow-md rounded-md mb-4 flex items-center justify-center h-full">
         <h1 href="">Login to comment!</h1>
        </div>
-       
       )}
       <ul>
         {comments.map((comment, index) => (
@@ -90,4 +79,3 @@ export default function Page() {
     </Layout>
   )
 }
-

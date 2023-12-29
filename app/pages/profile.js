@@ -9,42 +9,19 @@ import { useDarkMode } from '../components/DarkModeContext';
 export default function Profile() {
   const router = useRouter();
   const { user, logout } = useContext(UserContext);
-  const [isEditing, setIsEditing] = useState(false);
+  // State to track if edit mode is on
+  const [isEditing, setIsEditing] = useState(false); 
+  // Style for form inputs
+  const inputStyle = {backgroundColor: darkMode ? '#555' : 'white',color: darkMode ? 'white' : 'black',border: darkMode ? '1px solid #777' : '1px solid #ccc',};
+  // State to track which button is hovered
   const [hoveredButton, setHoveredButton] = useState('');
   const [hoveredButton2, setHoveredButton2] = useState('');
+  // Use the dark mode state from context
   const { darkMode } = useDarkMode();
-  const [profileData, setProfileData] = useState({
-    username: '',
-    first_name: '',
-    last_name: '',
-    description: '',
-  });
+  const [profileData, setProfileData] = useState({username: '',first_name: '',last_name: '',description: '',});
   // Style for form buttons
-  const buttonStyle = (buttonName) => ({
-    backgroundColor: '#0096f3',
-    color: 'white',
-    padding: '10px',
-    borderRadius: '5px',
-    marginBottom: '10px',
-    border: 'none',
-    cursor: 'pointer',
-    width: '100%', 
-    transition: 'transform 0.3s ease', // Animation transition
-    transform: hoveredButton === buttonName ? 'scale(1.05)' : 'scale(1)', // Scale the button
-  });
-
-  const buttonStyle2 = (buttonName) => ({
-    backgroundColor: '#0070f3',
-    color: 'white',
-    padding: '10px',
-    borderRadius: '5px',
-    marginBottom: '10px',
-    border: 'none',
-    cursor: 'pointer',
-    width: '100%', 
-    transition: 'transform 0.3s ease', // Animation transition
-    transform: hoveredButton2 === buttonName ? 'scale(1.05)' : 'scale(1)', // Scale the button
-  });
+  const buttonStyle = (buttonName) => ({backgroundColor: '#0096f3',color: 'white',padding: '10px',borderRadius: '5px',marginBottom: '10px',border: 'none',cursor: 'pointer',width: '100%', transition: 'transform 0.3s ease',transform: hoveredButton === buttonName ? 'scale(1.05)' : 'scale(1)',});
+  const buttonStyle2 = (buttonName) => ({backgroundColor: '#0070f3',color: 'white',padding: '10px',borderRadius: '5px',marginBottom: '10px',border: 'none',cursor: 'pointer',width: '100%', transition: 'transform 0.3s ease',transform: hoveredButton2 === buttonName ? 'scale(1.05)' : 'scale(1)',});
   // If user fetch data from supabase
   useEffect(() => {
     if (user) {
@@ -56,7 +33,6 @@ export default function Profile() {
             .select('username, first_name, last_name, description')
             .eq('id', user.id)
             .single();
-  
           if (error && status === 406) {
             // If profile does not exist, create a new one
             const { error: createError } = await supabase
@@ -70,7 +46,6 @@ export default function Profile() {
                   description: null 
                 }
               ]);
-  
             if (createError) {
               console.error('Error creating profile:', createError.message);
             } else {
@@ -90,22 +65,11 @@ export default function Profile() {
           console.error('Unexpected error:', err);
         }
       };
-  
       fetchOrCreateProfile();
     }
   }, [user, supabase]);
-  
-  // Style for form inputs
-  const inputStyle = {
-    backgroundColor: darkMode ? '#555' : 'white', // Darker input background for dark mode
-    color: darkMode ? 'white' : 'black', // Text color for input
-    border: darkMode ? '1px solid #777' : '1px solid #ccc', // Input border color
-  };
   // Handle input changes
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setProfileData((prevState) => ({...prevState,[name]: value,}));
-  };
+  const handleInputChange = (e) => {const { name, value } = e.target;setProfileData((prevState) => ({...prevState,[name]: value,}));};
   // Save profile data
   const saveProfile = async () => {
     const { data, error } = await supabase
@@ -129,7 +93,6 @@ export default function Profile() {
     await logout();
     router.push('/login');
   };
-
   return (
     <Layout title="Profile" description="User profile page">
       <main style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '80vh' }}>

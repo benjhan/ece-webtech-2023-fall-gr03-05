@@ -3,7 +3,6 @@ import Link from 'next/link'
 import { ChevronRightIcon } from '@heroicons/react/20/solid'
 import Layout from '../../components/Layout.js'
 import { useSupabaseClient } from '@supabase/auth-helpers-react'
-
 // Page contacts
 export default function Contacts() {
   const [contacts, setContacts] = useState([])
@@ -17,7 +16,6 @@ export default function Contacts() {
         setContacts(data)
     })()
   }, [supabase])
-
   return (
     <Layout
       title="Admin Contacts"

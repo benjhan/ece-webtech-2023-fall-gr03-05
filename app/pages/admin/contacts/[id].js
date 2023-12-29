@@ -17,7 +17,6 @@ export default function Contacts({id}) {
       setContact(data)
     })()
   }, [id, supabase])
-
   return (
     <Layout
       title="Admin Contacts"
@@ -44,7 +43,6 @@ export default function Contacts({id}) {
     </Layout>
   )
 }
-
 // This function gets called at build time
 export async function getServerSideProps(context) {
   return {
