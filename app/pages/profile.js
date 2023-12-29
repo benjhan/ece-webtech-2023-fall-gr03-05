@@ -10,12 +10,40 @@ export default function Profile() {
   const router = useRouter();
   const { user, logout } = useContext(UserContext);
   const [isEditing, setIsEditing] = useState(false);
+  const [hoveredButton, setHoveredButton] = useState('');
+  const [hoveredButton2, setHoveredButton2] = useState('');
   const { darkMode } = useDarkMode();
   const [profileData, setProfileData] = useState({
     username: '',
     first_name: '',
     last_name: '',
     description: '',
+  });
+  // Style for form buttons
+  const buttonStyle = (buttonName) => ({
+    backgroundColor: '#0096f3',
+    color: 'white',
+    padding: '10px',
+    borderRadius: '5px',
+    marginBottom: '10px',
+    border: 'none',
+    cursor: 'pointer',
+    width: '100%', 
+    transition: 'transform 0.3s ease', // Animation transition
+    transform: hoveredButton === buttonName ? 'scale(1.05)' : 'scale(1)', // Scale the button
+  });
+
+  const buttonStyle2 = (buttonName) => ({
+    backgroundColor: '#0070f3',
+    color: 'white',
+    padding: '10px',
+    borderRadius: '5px',
+    marginBottom: '10px',
+    border: 'none',
+    cursor: 'pointer',
+    width: '100%', 
+    transition: 'transform 0.3s ease', // Animation transition
+    transform: hoveredButton2 === buttonName ? 'scale(1.05)' : 'scale(1)', // Scale the button
   });
   // If user fetch data from supabase
   useEffect(() => {
@@ -116,7 +144,7 @@ export default function Profile() {
               <input style={{ ...inputStyle, width: '100%', padding: '10px' }} value={profileData.first_name} onChange={handleInputChange} name="first_name" required/>
               <input style={{ ...inputStyle, width: '100%', padding: '10px' }} value={profileData.last_name} onChange={handleInputChange} name="last_name" required/>
               <textarea style={{ ...inputStyle, width: '100%', padding: '10px', height: '100px' }} value={profileData.description} onChange={handleInputChange} name="description" required/>
-              <button style={{ width: '100%', padding: '10px', marginBottom: '10px' }} onClick={saveProfile} className="bg-gray-500 text-white rounded-md">Save </button>
+              <button style={buttonStyle('post')} onClick={saveProfile} onMouseEnter={() => setHoveredButton('post')} onMouseLeave={() => setHoveredButton('')}>Save</button>
             </>
           ) : (
             <>
@@ -132,10 +160,10 @@ export default function Profile() {
               <div style={{ alignSelf: 'flex-start', width: '100%', padding: '10px' }}>
                 Description: {profileData.description || 'Not provided'}
               </div>
-              <button style={{ width: '100%', padding: '10px', marginBottom: '10px' }} onClick={() => setIsEditing(true)} className="bg-gray-500 text-white rounded-md">Edit</button>
+              <button style={buttonStyle('post')}  onClick={() => setIsEditing(true)} onMouseEnter={() => setHoveredButton('post')} onMouseLeave={() => setHoveredButton('')}>Edit</button>
             </>
-          )}
-          <button style={{ width: '100%', padding: '10px' }} onClick={onClickLogout} className="bg-slate-500 text-white rounded-md">Sign out</button>
+          )} 
+          <button style={buttonStyle2('post')}  onClick={onClickLogout} onMouseEnter={() => setHoveredButton2('post')} onMouseLeave={() => setHoveredButton2('')}>Sign Out</button>
         </div>
       </main>
     </Layout>
