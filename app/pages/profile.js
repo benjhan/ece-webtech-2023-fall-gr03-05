@@ -20,21 +20,53 @@ export default function Profile() {
   // If user fetch data from supabase
   useEffect(() => {
     if (user) {
-      const fetchProfile = async () => {
-        const { data, error } = await supabase
-          .from('profiles')
-          .select('username, first_name, last_name, description')
-          .eq('id', user.id)
-          .single();
-        if (error) {
-          console.error('Error fetching profile:', error.message);
-        } else {
-          setProfileData(data || {});
+      const fetchOrCreateProfile = async () => {
+        try {
+          // Attempt to fetch the user's profile
+          const { data, error, status } = await supabase
+            .from('profiles')
+            .select('username, first_name, last_name, description')
+            .eq('id', user.id)
+            .single();
+  
+          if (error && status === 406) {
+            // If profile does not exist, create a new one
+            const { error: createError } = await supabase
+              .from('profiles')
+              .insert([
+                { 
+                  id: user.id, 
+                  username: null, 
+                  first_name: null, 
+                  last_name: null, 
+                  description: null 
+                }
+              ]);
+  
+            if (createError) {
+              console.error('Error creating profile:', createError.message);
+            } else {
+              // Set profile data to initial values since it's a new profile
+              setProfileData({ 
+                username: '', 
+                first_name: '', 
+                last_name: '', 
+                description: '' 
+              });
+            }
+          } else if (data) {
+            // Set the fetched profile data
+            setProfileData(data);
+          }
+        } catch (err) {
+          console.error('Unexpected error:', err);
         }
       };
-      fetchProfile();
+  
+      fetchOrCreateProfile();
     }
   }, [user, supabase]);
+  
   // Style for form inputs
   const inputStyle = {
     backgroundColor: darkMode ? '#555' : 'white', // Darker input background for dark mode
