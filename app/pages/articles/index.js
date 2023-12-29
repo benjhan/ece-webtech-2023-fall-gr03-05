@@ -6,16 +6,20 @@ import Post from '@/components/Post.js';
 import { useDarkMode } from '../../components/DarkModeContext.js';
 
 export default function Posts() {
+  // Fetch posts from supabase
   const [posts, setPosts] = useState([]);
+  // Style for form buttons
   const [hoveredButton, setHoveredButton] = useState('');
+  // dark mode
   const { darkMode } = useDarkMode();
+  // Style for form buttons
+  const buttonStyle = (buttonName) => ({backgroundColor: '#0070f3',color: 'white',padding: '10px 20px',borderRadius: '5px',marginBottom: '20px',border: 'none',cursor: 'pointer',transition: 'transform 0.3s ease',transform: hoveredButton === buttonName ? 'scale(1.1)' : 'scale(1)',position: 'absolute',right: '25%',margin: '10px',});
   useEffect(() => {
     (async () => {
       try {
         let { data, error } = await supabase
           .from('posts')
           .select();
-
         if (error) {
           console.error('Error fetching data:', error);
           return;
@@ -28,22 +32,6 @@ export default function Posts() {
       }
     })();
   }, []);
-
-  const buttonStyle = (buttonName) => ({
-    backgroundColor: '#0070f3',
-    color: 'white',
-    padding: '10px 20px',
-    borderRadius: '5px',
-    marginBottom: '20px',
-    border: 'none',
-    cursor: 'pointer',
-    transition: 'transform 0.3s ease',
-    transform: hoveredButton === buttonName ? 'scale(1.1)' : 'scale(1)',
-    position: 'absolute',
-    right: '25%',
-    margin: '10px',
-  });
-
    return (
     <Layout>
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative', width: '100%' }}>
@@ -51,13 +39,7 @@ export default function Posts() {
           Articles Page
         </h1>
         <Link href="/createpost" passHref>
-          <button 
-            style={buttonStyle('post')}
-            onMouseEnter={() => setHoveredButton('post')}
-            onMouseLeave={() => setHoveredButton('')}
-          >
-            Post
-          </button>
+          <button style={buttonStyle('post')}onMouseEnter={() => setHoveredButton('post')}onMouseLeave={() => setHoveredButton('')}>Post</button>
         </Link>
       </div>
       <ul>

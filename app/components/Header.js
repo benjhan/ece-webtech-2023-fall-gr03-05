@@ -6,8 +6,8 @@ import { useDarkMode } from './DarkModeContext'; // Import the useDarkMode hook
 
 export default function Header() {
   const { user } = useContext(UserContext);
-  const { darkMode, setDarkMode } = useDarkMode(); // Use the darkMode state and setDarkMode function
-
+  // Use the darkMode state and setDarkMode function
+  const { darkMode, setDarkMode } = useDarkMode(); 
   return (
     <header className="bg-custom-teal py-4 px-6 flex items-center justify-between">
       <div className="flex items-center">
@@ -23,11 +23,7 @@ export default function Header() {
           <div className="flex items-center">
             <span className="text-white text-xl font-bold mr-2">Dark Mode</span>
             <label className="switch">
-              <input 
-                type="checkbox" 
-                checked={darkMode}
-                onChange={() => setDarkMode(!darkMode)}
-              />
+              <input type="checkbox" checked={darkMode}onChange={() => setDarkMode(!darkMode)}/>
               <span className="slider round"></span>
             </label>
           </div>
