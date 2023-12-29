@@ -1,6 +1,7 @@
 import { useState} from 'react';
 import { useUser } from '@supabase/auth-helpers-react';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 import Layout from '../components/Layout.js'
 import { supabase } from '../components/SupabaseClient.js'
 import { useDarkMode } from '../components/DarkModeContext';
@@ -67,10 +68,17 @@ export default function Page() {
                         </form>
                     </div>
                 ) : (
-                        <div className="text-center">
-                            <h1 className="text-3xl font-semibold mb-6">Please log in to post!</h1>
-                            <a href="/login" style={darkMode ? { backgroundColor: '#333', color: 'white' } : { backgroundColor: '#ccc', color: 'black' }} className="mt-4 px-4 py-2 rounded-md">Login</a>
-                        </div>
+                    <div className="text-center">
+                    <h1 className="text-3xl font-semibold mb-6">Please log in to post!</h1>
+                    <button 
+                        style={buttonStyle('login')}
+                        onMouseEnter={() => setHoveredButton('login')}
+                        onMouseLeave={() => setHoveredButton('')}
+                        onClick={() => router.push('/login')} // Navigate to login page on click
+                    >
+                        Login
+                    </button>
+                </div>
                 )}
             </main>
         </Layout>
