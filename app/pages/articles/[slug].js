@@ -15,7 +15,6 @@ export default function Page() {
   const [posts, setPosts] = useState([]);
   const [comments, setComments] = useState([])
   console.log(id)
-
   useEffect(() => {
     if (!id) return; // Needs to wait because it fetches at build time
 
@@ -25,7 +24,6 @@ export default function Page() {
           .from('posts')
           .select()
           .filter('id', 'eq', id) // Filter by the id
-
         if (error) {
           console.error('Error fetching data:', error);
           return;
@@ -47,9 +45,7 @@ export default function Page() {
       }
     })();
   }, [id]);
-
   const handleNewComment = async (comment) => {
-
     let { data, error } = await supabase
       .from('comments')
       .insert([
@@ -61,7 +57,6 @@ export default function Page() {
       return;
     }
   };
-
   return (
     <Layout>
       <ul>
@@ -79,7 +74,6 @@ export default function Page() {
         <div className="max-w-md mx-auto shadow-md rounded-md mb-4 flex items-center justify-center h-full">
         <h1 href="">Login to comment!</h1>
        </div>
-       
       )}
       <ul>
         {comments.map((comment, index) => (
